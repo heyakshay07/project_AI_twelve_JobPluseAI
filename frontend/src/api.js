@@ -1,4 +1,6 @@
 const KEY = "jobpulse.tokens";
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const API_ROOT = `${API_BASE_URL}/api`;
 
 export const tokens = {
   get: () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch { return null; } },
@@ -9,7 +11,7 @@ export const tokens = {
 async function refresh() {
   const t = tokens.get();
   if (!t?.refresh_token) return false;
-  const r = await fetch("/api/auth/refresh", {
+  const r = await fetch(`${API_ROOT}/auth/refresh`, {
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refresh_token: t.refresh_token }),
   });
@@ -25,7 +27,7 @@ export async function api(path, { method = "GET", body, params } = {}, retry = t
   const headers = { "Content-Type": "application/json" };
   const t = tokens.get();
   if (t?.access_token) headers.Authorization = `Bearer ${t.access_token}`;
-  const res = await fetch(`/api${path}${qs}`, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  const res = await fetch(`${API_ROOT}${path}${qs}`, { method, headers, body: body ? JSON.stringify(body) : undefined });
   if (res.status === 401 && retry && t && (await refresh())) return api(path, { method, body, params }, false);
   if (!res.ok) {
     let detail = res.statusText;
