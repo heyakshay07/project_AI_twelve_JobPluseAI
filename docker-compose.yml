@@ -1,0 +1,42 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16        # PostgreSQL + pgvector (used from Phase 5 onwards)
+    environment:
+      POSTGRES_USER: jobpulse
+      POSTGRES_PASSWORD: jobpulse
+      POSTGRES_DB: jobpulse
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jobpulse -d jobpulse"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://jobpulse:jobpulse@db:5432/jobpulse
+      CORS_ORIGINS: http://localhost:5173
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_API_PROXY: http://backend:8000
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+volumes:
+  pgdata:

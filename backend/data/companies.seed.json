@@ -1,0 +1,22 @@
+[
+  {"name": "Anthropic", "website": "https://www.anthropic.com", "career_url": "https://www.anthropic.com/careers", "ats_provider": "greenhouse", "ats_identifier": "anthropic", "country": "United States", "category": "AI", "is_mnc": false},
+  {"name": "Stripe", "website": "https://stripe.com", "career_url": "https://stripe.com/jobs", "ats_provider": "greenhouse", "ats_identifier": "stripe", "country": "United States", "category": "Fintech", "is_mnc": true},
+  {"name": "Databricks", "website": "https://www.databricks.com", "career_url": "https://www.databricks.com/company/careers", "ats_provider": "greenhouse", "ats_identifier": "databricks", "country": "United States", "category": "AI", "is_mnc": true},
+  {"name": "Cloudflare", "website": "https://www.cloudflare.com", "career_url": "https://www.cloudflare.com/careers/", "ats_provider": "greenhouse", "ats_identifier": "cloudflare", "country": "United States", "category": "Cloud", "is_mnc": true},
+  {"name": "Spotify", "website": "https://www.spotify.com", "career_url": "https://www.lifeatspotify.com/jobs", "ats_provider": "lever", "ats_identifier": "spotify", "country": "Sweden", "category": "Product", "is_mnc": true},
+  {"name": "Palantir", "website": "https://www.palantir.com", "career_url": "https://www.palantir.com/careers/", "ats_provider": "lever", "ats_identifier": "palantir", "country": "United States", "category": "Product", "is_mnc": true},
+  {"name": "TCS", "website": "https://www.tcs.com", "career_url": "https://www.tcs.com/careers", "country": "India", "category": "Indian IT", "is_mnc": true},
+  {"name": "Infosys", "website": "https://www.infosys.com", "career_url": "https://www.infosys.com/careers/", "country": "India", "category": "Indian IT", "is_mnc": true},
+  {"name": "Wipro", "website": "https://www.wipro.com", "career_url": "https://careers.wipro.com", "country": "India", "category": "Indian IT", "is_mnc": true},
+  {"name": "HCLTech", "website": "https://www.hcltech.com", "career_url": "https://www.hcltech.com/careers", "country": "India", "category": "Indian IT", "is_mnc": true},
+  {"name": "Tech Mahindra", "website": "https://www.techmahindra.com", "career_url": "https://careers.techmahindra.com", "country": "India", "category": "Indian IT", "is_mnc": true},
+  {"name": "LTIMindtree", "website": "https://www.ltimindtree.com", "career_url": "https://www.ltimindtree.com/careers/", "country": "India", "category": "Indian IT", "is_mnc": true},
+  {"name": "Accenture", "website": "https://www.accenture.com", "career_url": "https://www.accenture.com/in-en/careers", "country": "Ireland", "category": "Consulting", "is_mnc": true},
+  {"name": "Capgemini", "website": "https://www.capgemini.com", "career_url": "https://www.capgemini.com/careers/", "country": "France", "category": "Consulting", "is_mnc": true},
+  {"name": "Cognizant", "website": "https://www.cognizant.com", "career_url": "https://careers.cognizant.com", "country": "United States", "category": "Consulting", "is_mnc": true},
+  {"name": "IBM", "website": "https://www.ibm.com", "career_url": "https://www.ibm.com/careers", "country": "United States", "category": "Product", "is_mnc": true},
+  {"name": "Microsoft", "website": "https://www.microsoft.com", "career_url": "https://careers.microsoft.com", "country": "United States", "category": "Product", "is_mnc": true},
+  {"name": "Google", "website": "https://www.google.com", "career_url": "https://www.google.com/about/careers/applications/", "country": "United States", "category": "Product", "is_mnc": true},
+  {"name": "Amazon", "website": "https://www.amazon.com", "career_url": "https://www.amazon.jobs", "country": "United States", "category": "Product", "is_mnc": true},
+  {"name": "NVIDIA", "website": "https://www.nvidia.com", "career_url": "https://www.nvidia.com/en-us/about-nvidia/careers/", "country": "United States", "category": "AI", "is_mnc": true}
+]
