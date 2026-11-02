@@ -114,7 +114,7 @@ Open:
 - App: http://localhost:5173
 - API docs (Swagger): http://localhost:8000/docs
 
-The backend container runs the database migration and seeds the company directory on start.
+The backend container runs migrations, seeds companies, and ingests jobs on first start when the active jobs table is empty. Later restarts skip the initial ingest once jobs exist.
 Then, in a **second terminal**, fetch jobs and create an admin:
 
 ```bash
@@ -138,8 +138,7 @@ python -m venv .venv
 source .venv/bin/activate                  # Windows PowerShell: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-alembic upgrade head                       # create tables
-python -m app.cli seed-companies           # load the company directory
+alembic upgrade head                       # create tables and seed the company directory
 python -m app.cli ingest                   # fetch real jobs (needs internet)
 python -m app.cli verify --limit 25        # optional: check links of the first 25 unverified jobs
 python -m app.cli create-admin you@example.com   # optional: asks for a password

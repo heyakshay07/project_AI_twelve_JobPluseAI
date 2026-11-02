@@ -4,7 +4,7 @@ import getpass
 import json
 import sys
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from app.database import SessionLocal, engine
 from app.models import Base, Job, User, UserProfile
@@ -25,6 +25,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--name", default="Admin")
 
     p = sub.add_parser("ingest", help="Fetch jobs from sources")
+    p.add_argument("--sources", default=",".join(SOURCE_NAMES), help="comma separated")
+
+    p = sub.add_parser("ingest-if-empty", help="Fetch jobs only when the active jobs table is empty")
     p.add_argument("--sources", default=",".join(SOURCE_NAMES), help="comma separated")
 
     p = sub.add_parser("verify", help="Run link/fraud verification on jobs not yet verified")
@@ -55,6 +58,14 @@ def main(argv: list[str] | None = None) -> int:
     elif args.cmd == "ingest":
         names = [s.strip() for s in args.sources.split(",") if s.strip()]
         print(json.dumps(run_ingest(names), indent=2, default=str))
+    elif args.cmd == "ingest-if-empty":
+        with SessionLocal() as db:
+            active_jobs = db.scalar(select(func.count()).select_from(Job).where(Job.is_active.is_(True))) or 0
+        if active_jobs:
+            print(f"Skipped startup ingest: found {active_jobs} active jobs already in the database.")
+        else:
+            names = [s.strip() for s in args.sources.split(",") if s.strip()]
+            print(json.dumps(run_ingest(names), indent=2, default=str))
     elif args.cmd == "verify":
         with SessionLocal() as db:
             jobs = db.scalars(
